@@ -2,7 +2,7 @@
 
 ``` bash
 cd $project_dir/app
-docker buil -t app .
+docker build -t app .
 docker run -p 8080:8080 app
 ```
 
