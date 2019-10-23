@@ -1,7 +1,7 @@
 Запуск API
 
 ``` bash
-cd $project_dir/app
+cd $project_dir
 docker-compose up -d 
 ```
 
