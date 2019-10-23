@@ -3,7 +3,7 @@
 ``` bash
 cd $project_dir/app
 docker build -t app .
-docker run -p 8080:8080 app
+docker run -p 9000:9000 app
 ```
 
 Запуск тестов
