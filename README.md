@@ -2,8 +2,7 @@
 
 ``` bash
 cd $project_dir/app
-docker build -t app .
-docker run -p 9000:9000 app
+docker-compose up -d 
 ```
 
 Запуск тестов
