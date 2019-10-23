@@ -1,8 +1,17 @@
-FROM ruby:alpine
+FROM ruby:2.6.3 as build
 
-RUN gem install sinatra
+LABEL service="even-number-checker"
 
-WORKDIR /usr/even_numbers
-COPY . .
+RUN mkdir -p /opt/even-number-checker
+WORKDIR /opt/even-number-checker
+
+COPY . /opt/even-number-checker
+RUN bundle install
+
+FROM ruby:2.6.3-alpine3.10
+COPY --from=build /usr/local/bundle /usr/local/bundle
+
+WORKDIR /opt/even-number-checker
+COPY . /opt/even-number-checker
 
 CMD ["ruby", "app.rb"]

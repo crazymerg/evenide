@@ -1,15 +1,39 @@
+require 'rack'
+require 'rack/handler/puma'
 require 'sinatra'
+require 'sinatra/param'
 require 'json'
 
-set :port, 8080
+class Api < Sinatra::Base
+  helpers Sinatra::Param
 
-get '/check_is_even/:number' do
-    status 200
-    result = (params['number'].to_i.even?) ?  true : false
-    JSON.generate({:result => result})
+  disable :show_exceptions
+  disable :raise_errors
+  disable :dump_errors
+
+  before do
+    content_type :json
+  end
+
+  get '/check_is_even/:number' do
+    param :number, Integer, required: true
+
+    body = {result: Integer(params['number']).even?}
+
+    JSON.dump(status: 200, body: body)
+  end
+
+  get '/get_random_even' do
+    param :min, Integer, required: true
+    param :max, Integer, required: true
+
+    random_even = loop do
+      number = rand(Integer(params[:min])..Integer(params[:max]))
+      break number if number.even?
+    end
+
+    JSON.dump(status: 200, body: {result: random_even})
+  end
 end
 
-get '/get_random_even/:range' do
-  status 200
-  (2..params['range'].to_i).step(2).to_a.shuffle.first.to_json
-end
+Rack::Handler::Puma.run(Api, :Port => 9000)
