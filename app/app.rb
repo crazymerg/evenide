@@ -34,6 +34,16 @@ class Api < Sinatra::Base
 
     JSON.dump(status: 200, body: {result: random_even})
   end
+
+  post '/select_even' do
+    array = JSON.parse(request.body.read)
+
+    even = array.select do |elem|
+        elem.even?
+    end
+
+    JSON.dump(status: 200, body: {result: even})
+  end
 end
 
 Rack::Handler::Puma.run(Api, :Port => 4567)
