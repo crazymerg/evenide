@@ -1,10 +1,12 @@
 import requests
 import pytest
 import json
+import os
 
 
 class Api:
-    _base_url = 'http://localhost:8080'
+    _port = os.environ['APP_PORT']
+    _base_url = f'http://localhost:{_port}'
     _check_one_url = '/check_is_even'
     _select_even_url = '/select_even_numbers'
     _get_random_url = '/get_random_even'
