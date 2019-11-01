@@ -36,4 +36,4 @@ class Api < Sinatra::Base
   end
 end
 
-Rack::Handler::Puma.run(Api, :Port => 80)
+Rack::Handler::Puma.run(Api, :Port => 4567)
