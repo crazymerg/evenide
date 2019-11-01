@@ -13,3 +13,9 @@ def test_is_even(api, number, expected):
 
     assert is_even['status'] == 200
     assert is_even['body']['result'] is expected
+
+
+def test_select_even(api):
+    response = api.select_even([1,2,3,4,5])
+
+    assert response['body']['result']==[2,4]
