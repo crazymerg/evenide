@@ -22,7 +22,7 @@ awesome_ruby_api_url = 'https://example.com'
 r = requests.get(f'{awesome_ruby_api_url}/check_is_even/{your_number}')
 
 #returns True, if your number is even
-
+```
 
 License
 
