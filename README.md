@@ -9,7 +9,7 @@ docker-compose up -d
 
 ``` bash
 cd $project_dir
-pipenv install
+pipenv install --dev
 pipenv run pytest
 ```
 
